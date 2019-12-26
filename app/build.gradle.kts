@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Versions.compileSdk)
     defaultConfig {
-        applicationId = "com.arronj.usaweatherapp"
-        minSdkVersion(23)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = APPLICATION_ID
+        minSdkVersion(Versions.minSdk)
+        targetSdkVersion(Versions.targetSdk)
+        versionCode = Releases.versionCode
+        versionName = Releases.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -32,74 +32,81 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.core:core-ktx:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta4")
-    testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+
+    // Kotlin stdlib
+    implementation(KotlinLibraries.kotlin)
+
+    // Androidx
+    implementation(AndroidLibraries.appCompat)
+    implementation(AndroidLibraries.androidxCoreKtx)
+
+    // ConstraintLayout
+    implementation(AndroidLibraries.constraintLayout)
+
+    // JUnit, Espresso
+    testImplementation(TestLibraries.jUnit)
+    androidTestImplementation(TestLibraries.jUnitExt)
+    androidTestImplementation(TestLibraries.espresso)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.10.0")
+    implementation(Libraries.glide)
 
     // Koin
-    val koinVersion = "2.0.1"
-    implementation("org.koin:koin-androidx-scope:$koinVersion")
-    implementation("org.koin:koin-androidx-viewmodel:$koinVersion")
-    implementation("org.koin:koin-androidx-ext:$koinVersion")
+    implementation(Libraries.koinScope)
+    implementation(Libraries.koinViewModel)
+    implementation(Libraries.koinExt)
 
     // Data Binding
-    kapt("com.android.databinding:compiler:5.4.1")
+    kapt(AndroidLibraries.dataBinding)
 
     // Co-routines
-    val coroutinesVersion = "1.3.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutinesVersion")
+    implementation(KotlinLibraries.coroutinesCore)
+    implementation(KotlinLibraries.coroutinesAndroid)
+    implementation(KotlinLibraries.coroutinesPlayServices)
 
     // Fragment
-    implementation( "androidx.fragment:fragment-ktx:1.2.0-rc03")
+    implementation(AndroidLibraries.fragmentKtx)
 
     // Material Design
-    implementation("com.google.android.material:material:1.2.0-alpha02")
+    implementation(AndroidLibraries.material)
 
     // Lifecycle
-    val lifecycleVersion = "2.2.0-rc03"
-    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation(AndroidLibraries.lifecycleExt)
+    implementation(AndroidLibraries.lifecycleViewModel)
+    implementation(AndroidLibraries.lifecycleLiveData)
+    implementation(AndroidLibraries.lifecycleRuntime)
 
     // Navigation
-    val navVersion = "2.2.0-rc03"
-    implementation("androidx.navigation:navigation-fragment-ktx:2.1.0")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation(AndroidLibraries.navigationUi)
+    implementation(AndroidLibraries.navigationFragment)
 
     // Work
-    val workVersion = "2.3.0-beta01"
-    implementation("androidx.work:work-runtime-ktx:$workVersion")
-    androidTestImplementation("androidx.work:work-testing:$workVersion")
+    implementation(AndroidLibraries.work)
+    androidTestImplementation(TestLibraries.work)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.7.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0")
+    implementation(Libraries.retrofit)
+    implementation(Libraries.retrofitKotlinXConverter)
 
     // OkHttp
-    val okHttpVersion = "4.2.2"
-    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
-    testImplementation("com.squareup.okhttp3:mockwebserver:$okHttpVersion")
+    implementation(Libraries.httpLoggingInterceptor)
+    testImplementation(TestLibraries.mockWebServer)
 
     // Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.14.0")
+    implementation(KotlinLibraries.serialization)
 
     // ThreeTenABP Time Library
-    implementation("com.jakewharton.threetenabp:threetenabp:1.2.1")
+    implementation(Libraries.threeTen)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(Libraries.timber)
 
     // Leak Canary
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.0")
+    debugImplementation(Libraries.leakCanary)
+
+    // Room
+    implementation(AndroidLibraries.roomRuntime)
+    implementation(AndroidLibraries.roomKtx)
+    kapt(AndroidLibraries.roomCompiler)
+    testImplementation(TestLibraries.room)
 }

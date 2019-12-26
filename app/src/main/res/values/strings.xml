@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">USA Weather App</string>
+    <string name="title_testfeature">Module Title</string>
 </resources>

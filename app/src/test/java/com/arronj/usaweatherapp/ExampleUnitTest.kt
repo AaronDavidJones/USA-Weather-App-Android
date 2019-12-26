@@ -1,7 +1,6 @@
 package com.arronj.usaweatherapp
 
 import org.junit.Test
-
 import org.junit.Assert.*
 
 /**
